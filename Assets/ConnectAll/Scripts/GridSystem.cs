@@ -139,8 +139,8 @@ namespace ConnectAll
 
         public bool CheckWinCondition()
         {
-            bool canWin = true;
-            int numOfCheck = 0;
+            bool canWin = false;
+   
 
             _listSlotHasChip.Clear();
 
@@ -156,54 +156,84 @@ namespace ConnectAll
                     }
                 }
             }
-
+           
 
             foreach (var slot in _listSlotHasChip)
             {
-                GridSlot nb = GetDirectionNB(slot, Direction.Up);
-                if (nb != null && nb.HasChip())
+                GridSlot nb;
+                if (slot.Chip.UpConnectors.NumOfConnector > 0)
                 {
-                    numOfCheck++;
-                    canWin = slot.Chip.CanConnect(Direction.Up, nb.Chip);
+                    nb = GetDirectionNB(slot, Direction.Up);
+                    if (nb != null && nb.HasChip())
+                    {
+                    
+                        canWin = slot.Chip.CanConnect(Direction.Up, nb.Chip);
 
-                    if (canWin == false)
-                        break;
+                        if (canWin == false)
+                            break;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
+                if (slot.Chip.DownConnectors.NumOfConnector > 0)
+                {
+                    nb = GetDirectionNB(slot, Direction.Down);
+
+                    if (nb != null && nb.HasChip())
+                    {
+                        canWin = slot.Chip.CanConnect(Direction.Down, nb.Chip);
+
+                       if (canWin == false)
+                            break;
+                    }
+                    else
+                    {
+                        return false;
+                    }
 
                 }
 
-                nb = GetDirectionNB(slot, Direction.Down);
-                if (nb != null && nb.HasChip())
-                {
-                    numOfCheck++;
-                    canWin = slot.Chip.CanConnect(Direction.Down, nb.Chip);
 
-                    if (canWin == false)
-                        break;
+                if (slot.Chip.LeftConnectors.NumOfConnector > 0)
+                {
+                    nb = GetDirectionNB(slot, Direction.Left);
+                    if (nb != null && nb.HasChip())
+                    {
+                        canWin = slot.Chip.CanConnect(Direction.Left, nb.Chip);
+
+                        if (canWin == false)
+                            break;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
 
-                nb = GetDirectionNB(slot, Direction.Left);
-                if (nb != null && nb.HasChip())
-                {
-                    numOfCheck++;
-                    canWin = slot.Chip.CanConnect(Direction.Left, nb.Chip);
+                if (slot.Chip.RightConnectors.NumOfConnector > 0)
+                {         
+                    nb = GetDirectionNB(slot, Direction.Right);
+                    if (nb != null && nb.HasChip())
+                    {
+                        canWin = slot.Chip.CanConnect(Direction.Right, nb.Chip);
 
-                    if (canWin == false)
-                        break;
+                        if (canWin == false)
+                            break;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-
-                nb = GetDirectionNB(slot, Direction.Right);
-                if (nb != null && nb.HasChip())
-                {
-                    numOfCheck++;
-                    canWin = slot.Chip.CanConnect(Direction.Right, nb.Chip);
-
-                    if (canWin == false)
-                        break;
-                }
+                
+               
             }
 
-
-            return canWin == true && numOfCheck == _listSlotHasChip.Count;
+ 
+            return canWin;
         }
 
 
@@ -234,16 +264,16 @@ namespace ConnectAll
                     slotNB = null;
                     break;
                 case Direction.Up:
-                    slotNB = GetNB(row - 1, column); // Up
+                    slotNB = GetNB(row - 1, column); 
                     break;
                 case Direction.Down:
-                    slotNB = GetNB(row + 1, column); // Up
+                    slotNB = GetNB(row + 1, column); 
                     break;
                 case Direction.Left:
-                    slotNB = GetNB(row, column - 1); // Up
+                    slotNB = GetNB(row, column - 1); 
                     break;
                 case Direction.Right:
-                    slotNB = GetNB(row, column + 1); // Up
+                    slotNB = GetNB(row, column + 1); 
                     break;
             }
             

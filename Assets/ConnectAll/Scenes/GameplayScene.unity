@@ -201,7 +201,7 @@ MonoBehaviour:
   _gridSlotPrefab: {fileID: 8748245877642370791, guid: 1faae0e1caa87ef46b0ccab2d175fb93, type: 3}
   _redChip: {fileID: 1554939400838235436, guid: c62642c61078d7f4b8183af2c37ad6ee, type: 3}
   _greenChip: {fileID: 7427932370440896823, guid: dc8a4289373060447a71872cc2c893d3, type: 3}
-  _levelData: {fileID: 11400000, guid: 36498de887539204eb1222e72ba3385c, type: 2}
+  _levelData: {fileID: 11400000, guid: 8a751cb9bf49555499172be7db29f077, type: 2}
   _gridSpacing: 1.38
   _listSlotHasChip: []
 --- !u!4 &222838539

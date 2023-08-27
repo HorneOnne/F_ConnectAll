@@ -38,7 +38,7 @@ namespace ConnectAll
         #region Properties
         public Connector UpConnectors { get => _up; }
         public Connector DownConnectors { get => _down; }
-        public Connector LeftConnectorsp { get => _left; }
+        public Connector LeftConnectors { get => _left; }
         public Connector RightConnectors { get => _right; }
         #endregion
 
@@ -141,7 +141,7 @@ namespace ConnectAll
                     {
                         //Debug.Log("Check right");
 
-                        canConnect = _right.NumOfConnector == chip.LeftConnectorsp.NumOfConnector;
+                        canConnect = _right.NumOfConnector == chip.LeftConnectors.NumOfConnector;
                         if (canConnect == false)
                             return false;
                     }
