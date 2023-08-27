@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace ConnectAll
 {
-    [CreateAssetMenu(fileName = "LevelData_", menuName = "RememberCarefully/LevelData", order = 51)]
+    [CreateAssetMenu(fileName = "LevelData_", menuName = "ConnectAll/LevelData", order = 51)]
     public class LevelData : ScriptableObject
     {
         [Header("Level")]
@@ -17,5 +18,17 @@ namespace ConnectAll
         [Header("Grid size")]
         public int Width;
         public int Height;
+        public List<ChipData> ChipData;
+    }
+
+
+    [System.Serializable]
+    public class ChipData
+    {
+        public Chip.ChipType ChipType;
+        public Connector Up;
+        public Connector Down;
+        public Connector Left;
+        public Connector Right;
     }
 }
