@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ConnectAll
@@ -6,22 +7,31 @@ namespace ConnectAll
     public class UIGameplay : CustomCanvas
     {
         [Header("Buttons")]
-        [SerializeField] private Button _jumpBtn;
+        [SerializeField] private Button _backBtn;
 
-
+        [Header("Texts")]
+        [SerializeField] private TextMeshProUGUI _levelText;
 
         private void Start()
         {
-            _jumpBtn.onClick.AddListener(() =>
+            LoadLevelText();
+
+            _backBtn.onClick.AddListener(() =>
             {
-           
+                Loader.Load(Loader.Scene.MenuScene);
+
                 SoundManager.Instance.PlaySound(SoundType.Button, false);
             });
         }
 
         private void OnDestroy()
         {
-            _jumpBtn.onClick.RemoveAllListeners();
+            _backBtn.onClick.RemoveAllListeners();
+        }
+
+        private void LoadLevelText()
+        {
+            _levelText.text = $"LEVEL {GameManager.Instance.PlayingLevelData.Level}";
         }
     }
 }

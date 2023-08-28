@@ -82,7 +82,14 @@ namespace ConnectAll
                     OnPlaying?.Invoke();
                     break;
                 case GameState.WIN:
+                    SoundManager.Instance.PlaySound(SoundType.Win, false);
+                    GameManager.Instance.LevelUp();
+                    GameManager.Instance.PlayingLevelData.IsLocking = false;
 
+                    StartCoroutine(Utilities.WaitAfter(1.0f, () =>
+                    {
+                        Loader.Load(Loader.Scene.GameplayScene);
+                    }));
 
                     OnWin?.Invoke();
                     break;

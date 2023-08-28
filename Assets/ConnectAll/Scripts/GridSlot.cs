@@ -75,12 +75,16 @@ namespace ConnectAll
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (_chip == null || _canDragChip == false) return;
-            _inputHandler.IsDragging = true;
-            _inputHandler.SetLastestGridSlotEnter(this);
-            _inputHandler.SetChip(this._chip);
-            _chip = null;
+            if(GameplayManager.Instance.CurrentState == GameplayManager.GameState.PLAYING)
+            {
+                if (_chip == null || _canDragChip == false) return;
+                _inputHandler.IsDragging = true;
+                _inputHandler.SetLastestGridSlotEnter(this);
+                _inputHandler.SetChip(this._chip);
+                _chip = null;
 
+                SoundManager.Instance.PlaySound(SoundType.Hit, false);
+            }       
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -94,21 +98,25 @@ namespace ConnectAll
             {
                 _inputHandler.IsDragging = false;
                 _inputHandler.UpdateChipPosition();
+                SoundManager.Instance.PlaySound(SoundType.Hit, false);
 
                 bool canWin = GridSystem.Instance.CheckWinCondition();
-                Debug.Log(canWin);
+                if(canWin)
+                {
+                    GameplayManager.Instance.ChangeGameState(GameplayManager.GameState.WIN);
+                }
             }       
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (_chip == null && _inputHandler.IsDragging)
+            if(GameplayManager.Instance.CurrentState == GameplayManager.GameState.PLAYING)
             {
-                _inputHandler.SetLastestGridSlotEnter(this);
+                if (_chip == null && _inputHandler.IsDragging)
+                {
+                    _inputHandler.SetLastestGridSlotEnter(this);
+                }
             }
-
-        }
-
-       
+        }     
     }
 }

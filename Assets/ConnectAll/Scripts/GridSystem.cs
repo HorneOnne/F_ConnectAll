@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 
@@ -38,33 +37,17 @@ namespace ConnectAll
 
         private void Start()
         {
-            //LoadLevelData();
+            LoadLevelData();
             CreateGrid();
             LoadGridData();
-
-            //StartCoroutine(Utilities.WaitAfter(1.0f, () =>
-            //{
-            //    StartCoroutine(PerformToggleWhenStart(() =>
-            //    {
-            //        GameplayManager.Instance.ChangeGameState(GameplayManager.GameState.PLAYING);
-            //    }));
-            //}));
-
         }
 
 
-        //private void LoadLevelData()
-        //{
-        //    // Load Levedata from GameManger.
-        //    this._levelData = GameManager.Instance.PlayingLevelData;
-
-        //    var mainCam = Camera.main;
-        //    mainCam.orthographicSize = _levelData.OrthographicCameraSize;
-        //    Vector3 newPosition = new Vector3(mainCam.transform.position.x + _levelData.CameraOffset.x, mainCam.transform.position.y + _levelData.CameraOffset.y, mainCam.transform.position.z);
-        //    mainCam.transform.position = newPosition;
-
-        //    _gridMap = new HiddenBlock[_levelData.Width * _levelData.Height];
-        //}
+        private void LoadLevelData()
+        {
+            // Load Levedata from GameManger.
+            this._levelData = GameManager.Instance.PlayingLevelData;
+        }
 
 
         private void Update()
