@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelData_06
   m_EditorClassIdentifier: 
   Level: 6
-  IsLocking: 0
+  IsLocking: 1
   OrthographicCameraSize: 5
   CameraOffset: {x: 0, y: 0}
   Width: 4

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e25b2fd86ac921449420dc672c2b629, type: 3}
   m_Name: LevelData_01
   m_EditorClassIdentifier: 
-  Level: 0
+  Level: 1
   IsLocking: 0
   OrthographicCameraSize: 5
   CameraOffset: {x: 0, y: 0}
